@@ -1,0 +1,20 @@
+{
+	"name": "rosbags2_nodejs_wrapper",
+	"version": "0.1.0",
+	"description": "Rosbag2 CDR deserialization as a NodeJS library",
+	"main": "index.js",
+	"repository": "https://github.com/klintan/rosbags2_nodejs_wrapper.git",
+	"author": "Andreas Klintberg <ankl@kth.se>",
+	"gypfile": true,
+	"license": "MIT",
+	"scripts": {
+		"build": "node-gyp rebuild",
+		"clean": "node-gyp clean"
+	},
+	"dependencies": {
+		"node-addon-api": "^1.6.2"
+	},
+	"dev-dependencies": {
+		"node-gyp": "^3.8.0"
+	}
+}
