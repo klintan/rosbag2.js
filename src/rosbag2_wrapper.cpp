@@ -8,6 +8,7 @@ Napi::Object Rosbag2Wrapper::Init(Napi::Env env, Napi::Object exports) {
   Napi::Function func = DefineClass(env, "Rosbag2Wrapper", {
     InstanceMethod("add", &Rosbag2Wrapper::Add),
     InstanceMethod("getValue", &Rosbag2Wrapper::GetValue),
+    InstanceMethod("deserializeMessage", &Rosbag2Wrapper::DeserializeMessage),
   });
 
   constructor = Napi::Persistent(func);
@@ -53,3 +54,27 @@ Napi::Value Rosbag2Wrapper::Add(const Napi::CallbackInfo& info) {
   return Napi::Number::New(info.Env(), answer);
 
  }
+
+
+Napi::Value Rosbag2Wrapper::DeserializeMessage(const Napi::CallbackInfo& info) {
+  assert(info[0].IsString());
+
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  std::string message = info[0].As<Napi::String>().Utf8Value();
+
+  //Napi::String message = info[0].As<Napi::String>();
+  std::string deserialized_message = this->rosbag2Deserialize_->deserializeMessage(message);
+
+  return Napi::String::New(info.Env(), deserialized_message);
+
+ }
+
+
+
+Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
+  return Rosbag2Wrapper::Init(env, exports);
+}
+
+ NODE_API_MODULE(NODE_GYP_MODULE_NAME, InitAll);

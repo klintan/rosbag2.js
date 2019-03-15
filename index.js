@@ -1,4 +1,6 @@
-const rosbagDeserializer = require('./build/Release/rosbags2_nodejs_wrapper.node');
-console.log('addon',rosbagDeserializer);
+const RosbagDeserializer = require('./build/Release/rosbags2_nodejs_wrapper.node');
 
-module.exports = rosbagDeserializer;
+const deserializer = new RosbagDeserializer.Rosbag2Wrapper(4);
+console.log("test call to deserializer", deserializer.deserializeMessage("test"));
+
+module.exports = RosbagDeserializer;
