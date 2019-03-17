@@ -6,8 +6,6 @@ Napi::Object Rosbag2Wrapper::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func = DefineClass(env, "Rosbag2Wrapper", {
-    InstanceMethod("add", &Rosbag2Wrapper::Add),
-    InstanceMethod("getValue", &Rosbag2Wrapper::GetValue),
     InstanceMethod("deserializeMessage", &Rosbag2Wrapper::DeserializeMessage),
   });
 
@@ -21,52 +19,42 @@ Napi::Object Rosbag2Wrapper::Init(Napi::Env env, Napi::Object exports) {
 Rosbag2Wrapper::Rosbag2Wrapper(const Napi::CallbackInfo& info) : Napi::ObjectWrap<Rosbag2Wrapper>(info)  {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
-
-  int length = info.Length();
-  if (length != 1 || !info[0].IsNumber()) {
-    Napi::TypeError::New(env, "Number expected").ThrowAsJavaScriptException();
-  }
-
-  Napi::Number value = info[0].As<Napi::Number>();
-  this->rosbag2Deserialize_ = new Rosbag2Deserialize(value.DoubleValue());
 }
-
-Napi::Value Rosbag2Wrapper::GetValue(const Napi::CallbackInfo& info) {
-  Napi::Env env = info.Env();
-  Napi::HandleScope scope(env);
-
-  double num = this->rosbag2Deserialize_->getValue();
-  return Napi::Number::New(env, num);
-}
-
-
-Napi::Value Rosbag2Wrapper::Add(const Napi::CallbackInfo& info) {
-  Napi::Env env = info.Env();
-  Napi::HandleScope scope(env);
-
-  if (  info.Length() != 1 || !info[0].IsNumber()) {
-    Napi::TypeError::New(env, "Number expected").ThrowAsJavaScriptException();
-  }
-
-  Napi::Number toAdd = info[0].As<Napi::Number>();
-  double answer = this->rosbag2Deserialize_->add(toAdd.DoubleValue());
-
-  return Napi::Number::New(info.Env(), answer);
-
- }
 
 
 Napi::Value Rosbag2Wrapper::DeserializeMessage(const Napi::CallbackInfo& info) {
-  assert(info[0].IsString());
+  //assert(info[0].IsString());
 
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
-  std::string message = info[0].As<Napi::String>().Utf8Value();
+  //std::string message = info[0].As<Napi::String>().Utf8Value();
+  Napi::TypedArrayOf<uint8_t> message = info[0].As<Napi::TypedArrayOf<uint8_t>>();
 
+  std::cout << message.ElementLength() << std::endl;
+
+  uint8_t *uint8Message = message.Data();
+
+  /*for (uint8_t i = 0; i < message.ElementLength(); ++i) {
+        std::cout << uint8Message[i] << std::endl;
+    }*/
+
+  /*for (uint8_t *p = message.Data(); *p; ++p) {
+           std::cout << *p << std::endl;
+      }*/
+
+  //uint8_t *buffer= new uint8_t[message.ElementLength()];
+
+  //memcpy(buffer, message, message.ElementLength());
+  //Object obj = Object::New(env);
+
+  //size_t messageSize = sizeof info[0];
+  //Napi::Buffer<rosbag2::SerializedBagMessage> messageBuffer = Napi::Buffer<rosbag2::SerializedBagMessage>(env, info[0]);
+  //Napi::Buffer<Napi::String> messageBuffer = info[0].As<Napi::Buffer<Napi::String>>();
   //Napi::String message = info[0].As<Napi::String>();
-  std::string deserialized_message = this->rosbag2Deserialize_->deserializeMessage(message);
 
+  std::string deserialized_message = this->rosbag2Deserialize_->deserializeMessage(message.Data(), message.ElementLength());
+  //std::string deserialized_message = "test";
   return Napi::String::New(info.Env(), deserialized_message);
 
  }

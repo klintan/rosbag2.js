@@ -1,5 +1,8 @@
 #include <napi.h>
 #include "rosbag2_deserialize.hpp"
+#include "rosbag2/converter_interfaces/serialization_format_converter.hpp"
+#include "rosbag2/typesupport_helpers.hpp"
+#include "rosbag2/types/introspection_message.hpp"
 
 class Rosbag2Wrapper : public Napi::ObjectWrap<Rosbag2Wrapper> {
  public:
@@ -8,8 +11,6 @@ class Rosbag2Wrapper : public Napi::ObjectWrap<Rosbag2Wrapper> {
 
  private:
   static Napi::FunctionReference constructor;
-  Napi::Value GetValue(const Napi::CallbackInfo& info);
-  Napi::Value Add(const Napi::CallbackInfo& info);
   Napi::Value DeserializeMessage(const Napi::CallbackInfo& info);
   Rosbag2Deserialize *rosbag2Deserialize_;
 };
