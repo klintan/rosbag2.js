@@ -6,7 +6,9 @@
         "cflags_cc!": [ "-fno-exceptions" ],
         "sources": [
             "src/rosbag2_deserialize.cpp",
-            "src/rosbag2_wrapper.cpp"
+            "src/rosbag2_wrapper.cpp",
+            "src/rosbag2_wrapper.hpp",
+            "src/rosbag2_deserialize.hpp"
         ],
         'include_dirs': [
             "/Users/andreasklintberg/personal/rosbag2/rosbag2_converter_default_plugins/src/rosbag2_converter_default_plugins/cdr",

@@ -37,8 +37,14 @@ class Rosbag2Deserialize {
   std::string deserializeMessage(uint8_t * message, size_t size);
 
  private:
-   std::unique_ptr<rosbag2::converter_interfaces::SerializationFormatConverter> converter_;
-   rcutils_allocator_t allocator_;
-   std::unique_ptr<rosbag2_converter_default_plugins::CdrConverter> cdr_converter_;
+   //std::unique_ptr<rosbag2::converter_interfaces::SerializationFormatConverter> converter_;
+   //rcutils_allocator_t allocator_;
+   //std::unique_ptr<rosbag2_converter_default_plugins::CdrConverter> converter_;
+   //std::unique_ptr<rosbag2::converter_interfaces::SerializationFormatConverter> converter_;
+   //std::unique_ptr<rosbag2::Converter> converter_;
+   //rosbag2_converter_default_plugins::CdrConverter *converter_;
+   //rosbag2::converter_interfaces::SerializationFormatConverter *converter_;
 
+
+   //rosbag2::ConverterOptions converter_options_;
 };
