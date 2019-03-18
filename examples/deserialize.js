@@ -15,7 +15,6 @@ db.serialize(function () {
     $frameNumber: frameNumber
   }, function (err, res) {
     const uint8Message = new Uint8Array(res['data']);
-    console.log(uint8Message);
 
     console.log("deserialized message", deserializer.deserializeMessage(uint8Message));
   });

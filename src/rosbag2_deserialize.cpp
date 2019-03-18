@@ -41,8 +41,6 @@ std::string Rosbag2Deserialize::deserializeMessage(uint8_t* message, size_t size
 
    // cast to message type
    auto data = static_cast<std_msgs::msg::String *>(ros_message->message);
-   std::cout << data->data << std::endl;
 
-    std::string temp = "test";
-    return temp;
+    return data->data ;
 }
