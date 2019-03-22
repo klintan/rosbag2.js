@@ -27,8 +27,10 @@ Napi::Value Rosbag2Wrapper::DeserializeMessage(const Napi::CallbackInfo& info) {
   Napi::HandleScope scope(env);
 
   Napi::TypedArrayOf<uint8_t> message = info[0].As<Napi::TypedArrayOf<uint8_t>>();
+  Napi::String message_type = info[1].As<Napi::String>();
+  Napi::String topic = info[2].As<Napi::String>();
 
-  std::string deserialized_message = this->rosbag2Deserialize_->deserializeMessage(message.Data(), message.ElementLength()+1);
+  std::string deserialized_message = this->rosbag2Deserialize_->deserializeMessage(message.Data(), message.ElementLength()+1, message_type, topic);
 
   return Napi::String::New(info.Env(), deserialized_message);
 

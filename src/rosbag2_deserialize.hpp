@@ -24,12 +24,14 @@
 #include "std_msgs/msg/string.hpp"
 #include "sensor_msgs/msg/image.hpp"
 
+#include "base64.h"
+
 class Rosbag2Deserialize {
  public:
   Rosbag2Deserialize();
   rosbag2::SerializationFormatConverterFactory factory;
-  std::string deserializeMessage(uint8_t * message, size_t size);
+  std::string deserializeMessage(uint8_t * message, size_t size, std::string message_type, std::string topic);
 
  private:
-
+ std::string encode_message(std::shared_ptr<rosbag2_introspection_message_t> introspection_message, std::string message_type);
 };

@@ -28,9 +28,11 @@ You might need to change some paths in binding.gyp,
 
 ## Usage
 
+Make sure that your ROS2 environment is sourced before running the module, since some dependencies are dynamically linked.
+
 See examples folder for an example on how to use the module.
 
-The `sample.db3` is just a rosbag2 file containing one string message for testing.
+The `sample.db3` is just a rosbag2 file containing one string message and one image message for testing.
 
 ## Other
 

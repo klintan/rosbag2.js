@@ -1,6 +1,6 @@
 {
     "targets": [{
-        "target_name": "rosbags2_nodejs_wrapper",
+        "target_name": "rosbags2_nodejs",
         "cflags!": [ "-fno-exceptions" ],
         "cflags": [ "-std=c++14" ],
         "cflags_cc!": [ "-fno-exceptions" ],
@@ -8,7 +8,9 @@
             "src/rosbag2_deserialize.cpp",
             "src/rosbag2_wrapper.cpp",
             "src/rosbag2_wrapper.hpp",
-            "src/rosbag2_deserialize.hpp"
+            "src/rosbag2_deserialize.hpp",
+            "src/base64.h",
+            "src/base64.cpp"
         ],
         'include_dirs': [
             "/Users/andreasklintberg/personal/rosbag2/rosbag2_converter_default_plugins/src/rosbag2_converter_default_plugins/cdr",
