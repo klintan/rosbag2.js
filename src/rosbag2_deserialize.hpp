@@ -4,7 +4,6 @@
 
 #include "rosbag2/converter.hpp"
 #include "rosbag2/converter_options.hpp"
-#include "rosbag2/serialization_format_converter_factory.hpp"
 
 #include "rosbag2_storage/ros_helper.hpp"
 #include "rosbag2_storage/serialized_bag_message.hpp"
@@ -23,13 +22,15 @@
 #include "rmw/rmw.h"
 #include "std_msgs/msg/string.hpp"
 #include "sensor_msgs/msg/image.hpp"
+#include "sensor_msgs/msg/compressed_image.hpp"
+#include "sensor_msgs/msg/nav_sat_fix.hpp"
+#include "sensor_msgs/msg/imu.hpp"
 
 #include "base64.h"
 
 class Rosbag2Deserialize {
  public:
   Rosbag2Deserialize();
-  rosbag2::SerializationFormatConverterFactory factory;
   std::string deserializeMessage(uint8_t * message, size_t size, std::string message_type, std::string topic);
 
  private:

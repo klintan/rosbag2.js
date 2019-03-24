@@ -33,22 +33,37 @@ std::string Rosbag2Deserialize::deserializeMessage(uint8_t* message, size_t size
    // encode arbitrary message
    auto encoded = Rosbag2Deserialize::encode_message(introspection_message, message_type);
 
-    return encoded;
+   return encoded;
 }
 
 
 std::string Rosbag2Deserialize::encode_message(std::shared_ptr<rosbag2_introspection_message_t> introspection_message, std::string message_type) {
-      if (message_type == "std_msgs/String") {
-               auto str_message = static_cast<std_msgs::msg::String *>(introspection_message->message);
-               return base64_encode(reinterpret_cast<const unsigned char*>(str_message->data.c_str()), str_message->data.length());
-      }
-      if (message_type == "sensor_msgs/Image") {
-               auto img_message = static_cast<sensor_msgs::msg::Image *>(introspection_message->message);
-               //vector<unsigned char, allocator<unsigned char> >
-               //reinterpret_cast<char*>(buf.data());
-               return base64_encode(reinterpret_cast<const unsigned char*>(img_message->data.data()), img_message->data.size());
-      }
+    if (message_type == "std_msgs/String") {
+           auto str_message = static_cast<std_msgs::msg::String *>(introspection_message->message);
+           return base64_encode(reinterpret_cast<const unsigned char*>(str_message->data.c_str()), str_message->data.length());
+    }
+    if (message_type == "sensor_msgs/Image") {
+           auto img_message = static_cast<sensor_msgs::msg::Image *>(introspection_message->message);
+           //vector<unsigned char, allocator<unsigned char> >
+           //reinterpret_cast<char*>(buf.data());
+           return base64_encode(reinterpret_cast<const unsigned char*>(img_message->data.data()), img_message->data.size());
+    }
+    if (message_type == "sensor_msgs/CompressedImage") {
+           auto compressed_img_message = static_cast<sensor_msgs::msg::CompressedImage *>(introspection_message->message);
+           return base64_encode(reinterpret_cast<const unsigned char*>(compressed_img_message->data.data()), compressed_img_message->data.size());
+    }
+    if (message_type == "sensor_msgs/NavSatFix") {
+          auto gps_message = static_cast<sensor_msgs::msg::NavSatFix *>(introspection_message->message);
+          std::string json_string = "[\"" + std::to_string(gps_message->latitude) + "\",\""  +std::to_string(gps_message->longitude) + "\",\"" + std::to_string(gps_message->altitude) + "\"]";
+          return base64_encode(reinterpret_cast<const unsigned char*>(json_string.c_str()), json_string.length());
+    }
 
-      throw std::invalid_argument( "Message type not valid or not implemented" );
+    if (message_type == "sensor_msgs/Imu") {
+          auto imu_message = static_cast<sensor_msgs::msg::Imu *>(introspection_message->message);
+          std::string json_string = "[\"" + std::to_string(imu_message->orientation.x) + "\",\""  +std::to_string(imu_message->orientation.y) + "\",\"" + std::to_string(imu_message->orientation.z) + "\",\"" + std::to_string(imu_message->orientation.w) + "\"]";
+          return base64_encode(reinterpret_cast<const unsigned char*>(json_string.c_str()), json_string.length());
+    }
+
+    throw std::invalid_argument( "Message type not valid or not implemented");
 }
 
