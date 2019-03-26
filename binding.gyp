@@ -13,7 +13,7 @@
             "src/base64.cpp"
         ],
         'include_dirs': [
-            "libs/rosbag2/rosbag2_converter_default_plugins/src",
+            "include",
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'libraries': [
