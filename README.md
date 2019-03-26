@@ -26,11 +26,18 @@ CDR formatted message payload, and pass pack a base64 encoded string with the me
 First make sure to source your ROS2 environment. 
 `. install/setup.bash`
 
-If Rosbag2 is not installed as part of your base Ros2 environment, make sure you activate the Rosbag2 workspace as well.
-
 Then run:
 
 `yarn build`
+
+
+#### NPM/Yarn install/add
+`yarn add https://github.com/klintan/rosbag2_nodejs.git`
+
+#### About separate Rosbag2
+If Rosbag2 is not installed as part of your base Ros2 environment, make sure you activate the Rosbag2 workspace as well.
+Beware though, this might not work, I had to fight a bit and the `COLCON_PREFIX_PATH` will correctly add `include` and `lib` for Ros2 install folder, 
+but not a vanilla rosbag2 what it seems. 
 
 You might need to change some paths in binding.gyp, 
 

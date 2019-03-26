@@ -14,8 +14,6 @@
 #include "rosbag2/typesupport_helpers.hpp"
 #include "rosbag2/types/introspection_message.hpp"
 
-#include "rosidl_typesupport_cpp/message_type_support.hpp"
-
 #include "rmw/rmw.h"
 #include "std_msgs/msg/string.hpp"
 #include "sensor_msgs/msg/image.hpp"
