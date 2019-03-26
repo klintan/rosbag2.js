@@ -14,9 +14,6 @@
         ],
         'include_dirs': [
             "libs/rosbag2/rosbag2_converter_default_plugins/src",
-            "libs/rosidl_typesupport/rosidl_typesupport_cpp/include/rosidl_typesupport_cpp",
-            "libs/rosbag2/rosbag2/include",
-            "libs/rosbag2/rosbag2_storage/include",
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'libraries': [
