@@ -17,8 +17,8 @@
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'libraries': [
-                '-Wl,-rpath,-lrosidl_typesupport_cpp',
-                '-Wl,-rpath,-lrosbag2',
+                '-lrosidl_typesupport_cpp',
+                '-lrosbag2',
                 '-lrosbag2_converter_default_plugins'
               ],
         'dependencies': [
