@@ -22,7 +22,6 @@
         'libraries': [
                 '-Wl,-rpath,-lrosidl_typesupport_cpp',
                 '-Wl,-rpath,-lrosbag2',
-                '-L/Users/andreasklintberg/personal/rosbag2/install/rosbag2_converter_default_plugins/lib',
                 '-lrosbag2_converter_default_plugins'
               ],
         'dependencies': [
