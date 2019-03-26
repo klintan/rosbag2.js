@@ -13,25 +13,15 @@
             "src/base64.cpp"
         ],
         'include_dirs': [
-            "/Users/andreasklintberg/personal/rosbag2/rosbag2_converter_default_plugins/src/rosbag2_converter_default_plugins/cdr",
-            "/Users/andreasklintberg/personal/ros2/ros2-osx-crystal-pr2/include/rosidl_generator_cpp",
-            "/Users/andreasklintberg/personal/ros2/ros2-osx-crystal-pr2/include/rosidl_typesupport_cpp",
-            "/Users/andreasklintberg/personal/ros2/ros2-osx-crystal-pr2/include/rosidl_typesupport_c",
-            "/Users/andreasklintberg/personal/rosbag2/install/rosbag2/include/",
-            "/Users/andreasklintberg/personal/rosbag2/install/rosbag2_storage/include",
-            ".",
+            "libs/rosbag2/rosbag2_converter_default_plugins/src",
+            "libs/rosidl_typesupport/rosidl_typesupport_cpp/include/rosidl_typesupport_cpp",
+            "libs/rosbag2/rosbag2/include",
+            "libs/rosbag2/rosbag2_storage/include",
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'libraries': [
-                '-Wl,-rpath',
-                '-lrcl',
-                '-lrcutils',
-                '-lrmw',
-                '-lrosidl_generator_c',
-                '-lrosidl_typesupport_cpp',
-                '-lrosidl_typesupport_c',
-                '-L/Users/andreasklintberg/personal/rosbag2/install/rosbag2/lib',
-                '-lrosbag2',
+                '-Wl,-rpath,-lrosidl_typesupport_cpp',
+                '-Wl,-rpath,-lrosbag2',
                 '-L/Users/andreasklintberg/personal/rosbag2/install/rosbag2_converter_default_plugins/lib',
                 '-lrosbag2_converter_default_plugins'
               ],

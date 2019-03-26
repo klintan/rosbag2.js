@@ -1,0 +1,9 @@
+[submodule "libs/cpp-base64"]
+	path = libs/cpp-base64
+	url = https://github.com/ReneNyffenegger/cpp-base64.git
+[submodule "libs/rosbag2"]
+	path = libs/rosbag2
+	url = https://github.com/ros2/rosbag2.git
+[submodule "libs/rosidl_typesupport"]
+	path = libs/rosidl_typesupport
+	url = https://github.com/ros2/rosidl_typesupport.git

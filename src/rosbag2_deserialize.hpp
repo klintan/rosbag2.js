@@ -7,17 +7,14 @@
 
 #include "rosbag2_storage/ros_helper.hpp"
 #include "rosbag2_storage/serialized_bag_message.hpp"
-#include "rcutils/strdup.h"
 
-#include "cdr_converter.hpp"
+#include "rosbag2_converter_default_plugins/cdr/cdr_converter.hpp"
 
 #include "rosbag2/converter_interfaces/serialization_format_converter.hpp"
 #include "rosbag2/typesupport_helpers.hpp"
 #include "rosbag2/types/introspection_message.hpp"
 
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
-
-#include "rcl/types.h"
 
 #include "rmw/rmw.h"
 #include "std_msgs/msg/string.hpp"

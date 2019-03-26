@@ -18,7 +18,10 @@ db.serialize(function () {
   }, function (err, res) {
     const uint8Message = new Uint8Array(res['data']);
     /* deserializeMessage functions takes arguments: binary message data, ros message type, topic */
-    console.log("deserialized text message", deserializer.deserializeMessage(uint8Message, "std_msgs/String", "/text"));
+    let base64_string = deserializer.deserializeMessage(uint8Message, "std_msgs/String", "/text");
+    let buff = Buffer.from(base64_string, 'base64');
+    console.log("deserialized text message", buff.toString('ascii'));
+
   });
 });
 
