@@ -36,6 +36,14 @@ Then run:
 #### NPM/Yarn install/add
 `yarn add https://github.com/klintan/rosbag2_nodejs.git`
 
+
+#### Installation issues
+`otool -l rosbags2_nodejs/build/Release/rosbags2_nodejs.node`
+
+`install_name_tool -id @rpath/librosbag2_converter_default_plugins.dylib <ros2-install-folder>/lib/librosbag2_converter_default_plugins.dylib`
+
+
+
 #### About separate Rosbag2
 If Rosbag2 is not installed as part of your base Ros2 environment, make sure you activate the Rosbag2 workspace as well.
 Beware though, this might not work, I had to fight a bit and the `COLCON_PREFIX_PATH` will correctly add `include` and `lib` for Ros2 install folder, 

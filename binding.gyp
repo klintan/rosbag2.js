@@ -27,6 +27,22 @@
         'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ],
         'conditions': [
         [
+          'OS=="linux"', {
+            'defines': [
+              'OS_LINUX'
+            ],
+            'cflags_cc': [
+              '-std=c++14'
+            ],
+            'include_dirs': [
+              "<!@(node -e \"console.log(process.env.COLCON_PREFIX_PATH.replace(/:/, '/include/ ') + '/include/')\")",
+            ],
+            'library_dirs': [
+              "<!@(node -e \"console.log(process.env.COLCON_PREFIX_PATH.replace(/:/, '/lib/ ') + '/lib/')\")",
+            ],
+          }
+        ],
+        [
           'OS=="mac"',
           {
             'defines': [
@@ -41,7 +57,8 @@
             'xcode_settings': {
               'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
               'CLANG_CXX_LIBRARY': 'libc++',
-              'ALWAYS_SEARCH_USER_PATHS': 'NO'
+              'MACOS_DEPLOYMENT_TARGET': '10.12',
+              'CLANG_CXX_LANGUAGE_STANDARD': 'c++14'
             }
           }
         ]
