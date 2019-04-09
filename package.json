@@ -9,6 +9,7 @@
 	"license": "MIT",
 	"scripts": {
 		"install": "node-gyp rebuild",
+		"postinstall": "sh post_install.sh",
 		"clean": "node-gyp clean",
 		"start": "node index.js"
 	},

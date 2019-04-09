@@ -10,7 +10,7 @@ install_name_tool -change @rpath/libament_index_cpp.dylib $COLCON_PREFIX_PATH/li
 
 install_name_tool -change @rpath/libclass_loader.dylib $COLCON_PREFIX_PATH/lib/libclass_loader.dylib ./build/Release/rosbag2_nodejs.node
 
-install_name_tool -change @rpath/librcutils.dylib $COLCON_PREFIX_PATH/lib/librcutils.dylib ./node_modules/rosbag2_nodejs/build/Release/rosbag2_nodejs.node
+install_name_tool -change @rpath/librcutils.dylib $COLCON_PREFIX_PATH/lib/librcutils.dylib ./build/Release/rosbag2_nodejs.node
 
 install_name_tool -change @rpath/librosbag2_storage.dylib $COLCON_PREFIX_PATH/lib/librosbag2_storage.dylib ./build/Release/rosbag2_nodejs.node
 
