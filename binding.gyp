@@ -1,6 +1,6 @@
 {
     "targets": [{
-        "target_name": "rosbags2_nodejs",
+        "target_name": "rosbag2_nodejs",
         "cflags!": [ "-fno-exceptions" ],
         "cflags": [ "-std=c++14" ],
         "cflags_cc!": [ "-fno-exceptions" ],
@@ -17,8 +17,17 @@
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'libraries': [
+                '-lrcutils',
+                '-lrmw',
+                '-lclass_loader',
+                '-lament_index_cpp',
                 '-lrosidl_typesupport_cpp',
+                '-lrosidl_typesupport_c',
+                '-lrosidl_generator_c',
+                '-lrosidl_typesupport_introspection_c',
+                '-lrosidl_typesupport_introspection_cpp',
                 '-lrosbag2',
+                '-lrosbag2_storage',
                 '-lrosbag2_converter_default_plugins'
               ],
         'dependencies': [

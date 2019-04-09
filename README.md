@@ -1,6 +1,6 @@
-# Rosbags2 NodeJS wrapper
+# Rosbag2 NodeJS wrapper
 
-Simple CDR deserializer that can be used in NodeJS (CDR is the default serializer format used for Rosbags2). Deserialize Rosbag2 messages into objects/strings to be used in NodeJS.
+Simple CDR deserializer that can be used in NodeJS (CDR is the default serializer format used for Rosbag2). Deserialize Rosbag2 messages into objects/strings to be used in NodeJS.
 
 Tested on Crystal-Clemmys.
 
@@ -38,7 +38,7 @@ Then run:
 
 
 #### Installation issues
-`otool -l rosbags2_nodejs/build/Release/rosbags2_nodejs.node`
+`otool -l rosbag2_nodejs/build/Release/rosbag2_nodejs.node`
 
 `install_name_tool -id @rpath/librosbag2_converter_default_plugins.dylib <ros2-install-folder>/lib/librosbag2_converter_default_plugins.dylib`
 

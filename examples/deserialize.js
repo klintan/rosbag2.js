@@ -1,5 +1,5 @@
 let sqlite3 = require('sqlite3');
-let RosbagDeserializer = require('../build/Release/rosbags2_nodejs.node');
+let RosbagDeserializer = require('../build/Release/rosbag2_nodejs.node');
 let fs = require("fs");
 
 

@@ -1,28 +1,30 @@
 {
-	"name": "rosbags2_nodejs",
+	"name": "rosbag2_nodejs",
 	"version": "0.1.0",
 	"description": "Rosbag2 CDR deserialization as a NodeJS library",
 	"main": "index.js",
-	"repository": "https://github.com/klintan/rosbags2_nodejs.git",
+	"repository": "https://github.com/klintan/rosbag2_nodejs.git",
 	"author": "Andreas Klintberg <ankl@kth.se>",
 	"gypfile": true,
 	"license": "MIT",
 	"scripts": {
-		"build": "node-gyp rebuild",
-		"clean": "node-gyp clean"
+		"install": "node-gyp rebuild",
+		"postinstall": "sh post_install.sh",
+		"clean": "node-gyp clean",
+		"start": "node index.js"
 	},
 	"dependencies": {
 		"node-addon-api": "^1.6.2",
 		"sqlite3": "^4.0.6"
 	},
 	"devDependencies": {
-		"node-gyp": "^3.8.0",
 		"@babel/cli": "^7.0.0-beta",
 		"@babel/core": "^7.0.0-beta",
 		"@babel/plugin-proposal-class-properties": "^7.0.0-beta",
 		"@babel/preset-env": "^7.0.0-beta",
 		"@babel/preset-react": "^7.0.0-beta",
 		"@babel/register": "^7.0.0-beta",
-		"babel-polyfill": "^6.26.0"
+		"babel-polyfill": "^6.26.0",
+		"node-gyp": "^3.8.0"
 	}
 }
