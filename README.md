@@ -1,5 +1,63 @@
-# Rosbag2 NodeJS wrapper
+# Rosbag2
+Rosbag2 is a node.js & browser compatible module for reading Ros2 bag data files. Based on the packages https://github.com/cruise-automation/rosbag.js from Cruise Automation
+It tries to keep as close to that API as possible to the extent possible.
 
+## Installation
+First make sure to source your ROS2 environment. 
+`. install/setup.bash`
+
+Then install rosbag2 using
+`npm install rosbag2`
+
+or
+
+`yarn add rosbag2` or `yarn add https://github.com/klintan/rosbag2_nodejs.git`
+
+Then, depending on your environment, you can import {open} from 'rosbag2' or require('rosbag2').
+
+If you're not running your code in node.js or building for the browser using a package manager like webpack, you can import the script directly into the page:
+
+<script src="node_modules/rosbag2/dist/web/index.js"></script>
+<script>
+  // use rosbag.open() here...
+</script>
+
+## Build
+First make sure to source your ROS2 environment. 
+`. install/setup.bash`
+
+Then run:
+
+`yarn build`
+
+
+## Quick start
+The most common way to interact with a rosbag is to read data records for a specific set of topics. The rosbag format encodes type information for topics, and rosbag reads this type information and parses the data records into JavaScript objects and arrays.
+
+Here is an example of reading messages from a rosbag in node.js:
+```
+const { open } = require('rosbag');
+
+async function logMessagesFromFooBar() {
+ // open a new bag at a given file location:
+ const bag = await open('../path/to/ros.bag');
+
+ // read all messages from both the '/foo' and '/bar' topics:
+ await bag.readMessages({ topics: ['/foo', '/bar'] }, (result) => {
+   // topic is the topic the data record was in
+   // in this case it will be either '/foo' or '/bar'
+   console.log(result.topic);
+
+   // message is the parsed payload
+   // this payload will likely differ based on the topic
+   console.log(result.message);
+ });
+}
+
+logMessagesFromFooBar();
+```
+
+## Features
 Simple CDR deserializer that can be used in NodeJS (CDR is the default serializer format used for Rosbag2). Deserialize Rosbag2 messages into objects/strings to be used in NodeJS.
 
 Tested on Crystal-Clemmys.
@@ -23,19 +81,6 @@ Future:
 See the examples folder for usage. Basically what the approach would be is to read a SQLite3 DB from your Rosbag2 recording
 and you pass the message type (from the metafile or the DB row) and pass this to the deserializer function. It will deserialize the binary
 CDR formatted message payload, and pass pack a base64 encoded string with the message payload (see features for some limitations to some message types)
-
-## Installation
-First make sure to source your ROS2 environment. 
-`. install/setup.bash`
-
-Then run:
-
-`yarn build`
-
-
-#### NPM/Yarn install/add
-`yarn add https://github.com/klintan/rosbag2_nodejs.git`
-
 
 #### Installation issues
 `otool -l rosbag2_nodejs/build/Release/rosbag2_nodejs.node`
